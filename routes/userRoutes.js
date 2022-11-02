@@ -23,13 +23,17 @@ userRoutes
 
   .post("/users", (req, res) => {
     const user = new users({
-      id: req.body.nome,
       email: req.body.email,
       password: req.body.password,
       role: req.body.role,
+      date: new Date(),
     });
     user.save((err, users) => {
-      res.status(200).json({ users });
+      if (err) {
+        res.status(400).json({ msg: "Erro ao adicionar o novo usuário." });
+      } else {
+        res.status(200).json({ users });
+      }
     });
   })
 
