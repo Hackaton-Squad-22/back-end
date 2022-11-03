@@ -1,5 +1,5 @@
 import express from "express";
-import cursosfullstacks from "../models/Fullstracks.js";
+import cursosfullstacks from "../models/Fullstacks.js";
 
 let fullstacksRoutes = express.Router();
 

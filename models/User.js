@@ -8,7 +8,6 @@ const userSchema = new mongoose.Schema({
   role: { type: String },
   cursosIniciados: { type: Array },
   cursosFinalizados: { type: Array },
-
 });
 
 const users = mongoose.model("users", userSchema);
