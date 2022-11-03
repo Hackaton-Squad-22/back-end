@@ -26,6 +26,9 @@ uxRoutes
       data: new Date(),
       curso: req.body.curso,
       duracao: req.body.duracao,
+      tipo: req.body.tipo,
+      autor: req.body.autor,
+      url: req.body.url,
       trilha: req.body.trilha,
     });
     user.save((err, cursosux) => {
