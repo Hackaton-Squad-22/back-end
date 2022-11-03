@@ -30,6 +30,7 @@ fullstacksRoutes
       autor: req.body.autor,
       url: req.body.url,
       trilha: req.body.trilha,
+      modulo: req.body.modulo
     });
     user.save((err, cursosfullstacks) => {
       if (err) {
