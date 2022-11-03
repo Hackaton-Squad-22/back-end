@@ -6,7 +6,9 @@ const userSchema = new mongoose.Schema({
   email: { type: String, require: true },
   password: { type: String, require: true },
   role: { type: String },
-  cursos: { type: Array },
+  cursosIniciados: { type: Array },
+  cursosFinalizados: { type: Array },
+
 });
 
 const users = mongoose.model("users", userSchema);
