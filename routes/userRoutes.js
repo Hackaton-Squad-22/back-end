@@ -26,6 +26,11 @@ userRoutes
     users.aggregate(
       [
         {
+          $match: {
+            role: "user",
+          },
+        },
+        {
           $lookup: {
             from: "cursosfullstacks",
             localField: "cursosIniciados",
@@ -33,14 +38,9 @@ userRoutes
             as: "cursosIniciados",
           },
         },
-        {
+/*         {
           $unwind: {
             path: "$cursosIniciados",
-          },
-        },
-/*         {
-          $match: {
-            "cursosIniciados.autor": "PM3",
           },
         }, */
       ],
