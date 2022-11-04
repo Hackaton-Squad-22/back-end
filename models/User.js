@@ -6,7 +6,7 @@ const userSchema = new mongoose.Schema({
   email: { type: String, require: true },
   password: { type: String, require: true },
   role: { type: String },
-  cursosIniciados: {type: Array},
+  cursosIniciados: [{ type: mongoose.Schema.Types.ObjectId, ref: "cursosfullstacks" }],
   cursosFinalizados: [{ type: mongoose.Schema.Types.ObjectId, ref: "cursosfullstacks" }],
 });
 

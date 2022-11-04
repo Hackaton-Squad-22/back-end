@@ -38,11 +38,11 @@ userRoutes
             path: "$cursosIniciados",
           },
         },
-        {
+/*         {
           $match: {
             "cursosIniciados.autor": "PM3",
           },
-        },
+        }, */
       ],
       (err, users) => {
         if (err) {
