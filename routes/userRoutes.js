@@ -38,6 +38,7 @@ userRoutes
             as: "cursosIniciados",
           },
         },
+        // O UNWIND servirá caso queiramos separar em diferentes objetos os resultados do populate;
 /*         {
           $unwind: {
             path: "$cursosIniciados",
@@ -60,7 +61,7 @@ userRoutes
       password: req.body.password,
       role: req.body.role,
       cursos: [],
-      date: new Date(),
+      data: new Date(),
     });
     user.save((err, users) => {
       if (err) {
