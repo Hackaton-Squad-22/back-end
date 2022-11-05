@@ -60,7 +60,8 @@ userRoutes
       email: req.body.email,
       password: req.body.password,
       role: req.body.role,
-      cursos: [],
+      cursosIniciados: [],
+      cursosFinalizados: [],
       data: new Date(),
     });
     user.save((err, users) => {
@@ -74,7 +75,7 @@ userRoutes
 
   .post("/users/:id", (req, res) => {
     const id = req.params.id;
-    users.findByIdAndUpdate(id, req.body, (err, users) => {
+    users.findByIdAndUpdate(id, {$set: req.body}, (err, users) => {
       if (err) {
         res
           .status(400)
