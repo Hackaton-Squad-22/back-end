@@ -39,7 +39,7 @@ userRoutes
           },
         },
         // O UNWIND servirá caso queiramos separar em diferentes objetos os resultados do populate;
-/*         {
+        /*         {
           $unwind: {
             path: "$cursosIniciados",
           },
@@ -75,7 +75,7 @@ userRoutes
 
   .post("/users/:id", (req, res) => {
     const id = req.params.id;
-    users.findByIdAndUpdate(id, {$set: req.body}, (err, users) => {
+    users.findByIdAndUpdate(id, { $set: req.body }, (err) => {
       if (err) {
         res
           .status(400)
