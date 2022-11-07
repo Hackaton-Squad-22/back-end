@@ -6,7 +6,8 @@
   "type": "module",
   "scripts": {
     "test": "jest",
-    "dev": "nodemon server/server.js"
+    "dev": "nodemon server/server.js",
+    "start": "node server/server.js"
   },
   "repository": {
     "type": "git",
