@@ -6,8 +6,10 @@ import loginController from "../controllers/loginController.js";
 import qaRoutes from "../routes/qaRoutes.js";
 import uxRoutes from "../routes/uxRoutes.js";
 
-app.listen(4000, () =>
-  console.log("App escutando na porta http://localhost:4000")
+const PORT = process.env.PORT || 4000
+
+app.listen(PORT, () =>
+  console.log(`App escutando na porta http://localhost:${PORT}`)
 );
 
 app.get("/", (req, res) => {
