@@ -1,28 +1,28 @@
 import express from "express";
-import cursosfullstacks from "../models/Fullstacks.js";
+import cursosux from "../models/Ux.js";
 
-let fullstacksRoutes = express.Router();
+let uxRoutes = express.Router();
 
-fullstacksRoutes
-  .get("/fullstacks", (req, res) => {
-    cursosfullstacks.find((err, cursosfullstacks) => {
-      res.status(200).send(cursosfullstacks);
+uxRoutes
+  .get("/ux", (req, res) => {
+    cursosux.find((err, cursosux) => {
+      res.status(200).send(cursosux);
     });
   })
 
-  .get("/fullstacks/:id", (req, res) => {
+  .get("/ux/:id", (req, res) => {
     const id = req.params.id;
-    cursosfullstacks.findById(id, (err, cursosfullstacks) => {
+    cursosux.findById(id, (err, cursosux) => {
       if (err) {
         res.status(400).json({ msg: "Falha ao encontrar id do curso." });
       } else {
-        res.status(200).json(cursosfullstacks);
+        res.status(200).json(cursosux);
       }
     });
   })
 
-  .post("/fullstacks", (req, res) => {
-    const curso = new cursosfullstacks({
+  .post("/ux", (req, res) => {
+    const curso = new cursosux({
       data: new Date(),
       curso: req.body.curso,
       duracao: req.body.duracao,
@@ -32,18 +32,18 @@ fullstacksRoutes
       trilha: req.body.trilha,
       modulo: req.body.modulo
     });
-    curso.save((err, cursosfullstacks) => {
+    curso.save((err, cursosux) => {
       if (err) {
         res.status(400).json({ msg: "Erro ao adicionar o novo curso." });
       } else {
-        res.status(200).json({ cursosfullstacks });
+        res.status(200).json({ cursosux });
       }
     });
   })
 
-  .put("/fullstacks/:id", (req, res) => {
+  .put("/ux/:id", (req, res) => {
     const id = req.params.id;
-    cursosfullstacks.findByIdAndUpdate(id, req.body, (err) => {
+    cursosux.findByIdAndUpdate(id, req.body, (err) => {
       if (err) {
         res.status(400).json({ msg: "Falha ao encontrar id do curso" });
       } else {
@@ -52,9 +52,9 @@ fullstacksRoutes
     });
   })
 
-  .delete("/fullstacks/:id", (req, res) => {
+  .delete("/ux/:id", (req, res) => {
     const id = req.params.id;
-    cursosfullstacks.findByIdAndRemove(id, (err) => {
+    cursosux.findByIdAndRemove(id, (err) => {
       if (err) {
         res.status(400).json({ msg: "Falha ao encontrar id do curso" });
       } else {
@@ -63,4 +63,4 @@ fullstacksRoutes
     });
   });
 
-export default fullstacksRoutes;
+export default uxRoutes;

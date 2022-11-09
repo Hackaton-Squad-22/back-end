@@ -1,28 +1,28 @@
 import express from "express";
-import cursosfullstacks from "../models/Fullstacks.js";
+import cursosqa from "../models/Qa.js";
 
-let fullstacksRoutes = express.Router();
+let qaRoutes = express.Router();
 
-fullstacksRoutes
-  .get("/fullstacks", (req, res) => {
-    cursosfullstacks.find((err, cursosfullstacks) => {
-      res.status(200).send(cursosfullstacks);
+qaRoutes
+  .get("/qa", (req, res) => {
+    cursosqa.find((err, cursosqa) => {
+      res.status(200).send(cursosqa);
     });
   })
 
-  .get("/fullstacks/:id", (req, res) => {
+  .get("/qa/:id", (req, res) => {
     const id = req.params.id;
-    cursosfullstacks.findById(id, (err, cursosfullstacks) => {
+    cursosqa.findById(id, (err, cursosqa) => {
       if (err) {
         res.status(400).json({ msg: "Falha ao encontrar id do curso." });
       } else {
-        res.status(200).json(cursosfullstacks);
+        res.status(200).json(cursosqa);
       }
     });
   })
 
-  .post("/fullstacks", (req, res) => {
-    const curso = new cursosfullstacks({
+  .post("/qa", (req, res) => {
+    const curso = new cursosqa({
       data: new Date(),
       curso: req.body.curso,
       duracao: req.body.duracao,
@@ -30,20 +30,20 @@ fullstacksRoutes
       autor: req.body.autor,
       url: req.body.url,
       trilha: req.body.trilha,
-      modulo: req.body.modulo
+      modulo: req.body.modulo,
     });
-    curso.save((err, cursosfullstacks) => {
+    curso.save((err, cursosqa) => {
       if (err) {
         res.status(400).json({ msg: "Erro ao adicionar o novo curso." });
       } else {
-        res.status(200).json({ cursosfullstacks });
+        res.status(200).json({ cursosqa });
       }
     });
   })
 
-  .put("/fullstacks/:id", (req, res) => {
+  .put("/qa/:id", (req, res) => {
     const id = req.params.id;
-    cursosfullstacks.findByIdAndUpdate(id, req.body, (err) => {
+    cursosqa.findByIdAndUpdate(id, req.body, (err) => {
       if (err) {
         res.status(400).json({ msg: "Falha ao encontrar id do curso" });
       } else {
@@ -52,9 +52,9 @@ fullstacksRoutes
     });
   })
 
-  .delete("/fullstacks/:id", (req, res) => {
+  .delete("/qa/:id", (req, res) => {
     const id = req.params.id;
-    cursosfullstacks.findByIdAndRemove(id, (err) => {
+    cursosqa.findByIdAndRemove(id, (err) => {
       if (err) {
         res.status(400).json({ msg: "Falha ao encontrar id do curso" });
       } else {
@@ -63,4 +63,4 @@ fullstacksRoutes
     });
   });
 
-export default fullstacksRoutes;
+export default qaRoutes;
