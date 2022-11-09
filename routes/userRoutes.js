@@ -22,7 +22,7 @@ userRoutes
   })
 
   // Usaremos essa rota sempre que quisermos pegar as informações dos cursos linkando pelo id deles
-  .get("/user", (req, res) => {
+  .get("/userFullstacks", (req, res) => {
     users.aggregate(
       [
         {
@@ -33,12 +33,12 @@ userRoutes
         {
           $lookup: {
             from: "cursosfullstacks",
-            localField: "cursosIniciados",
+            localField: "cursosFullstacks",
             foreignField: "_id",
-            as: "cursosIniciados",
+            as: "cursosFullstacks",
           },
         },
-/*         {
+        /*         {
           $unwind: {
             path: "$cursosIniciados",
           },
@@ -54,12 +54,66 @@ userRoutes
     );
   })
 
+  .get("/userQa", (req, res) => {
+    users.aggregate(
+      [
+        {
+          $match: {
+            role: "user",
+          },
+        },
+        {
+          $lookup: {
+            from: "cursosqa",
+            localField: "cursosQa",
+            foreignField: "_id",
+            as: "cursosQa",
+          },
+        },
+      ],
+      (err, users) => {
+        if (err) {
+          res.status(400).json({ msg: "Falha ao encontrar id do usuário." });
+        } else {
+          res.status(200).json(users);
+        }
+      }
+    );
+  })
+
+  .get("/userUx", (req, res) => {
+    users.aggregate(
+      [
+        {
+          $match: {
+            role: "user",
+          },
+        },
+        {
+          $lookup: {
+            from: "cursosux",
+            localField: "cursosUx",
+            foreignField: "_id",
+            as: "cursosUx",
+          },
+        },
+      ],
+      (err, users) => {
+        if (err) {
+          res.status(400).json({ msg: "Falha ao encontrar id do usuário." });
+        } else {
+          res.status(200).json(users);
+        }
+      }
+    );
+  })
+
   .post("/users", (req, res) => {
     const user = new users({
+      nome: req.body.nome,
       email: req.body.email,
       password: req.body.password,
-      role: req.body.role,
-      cursos: [],
+      role: "user",
       date: new Date(),
     });
     user.save((err, users) => {
