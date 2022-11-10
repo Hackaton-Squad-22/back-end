@@ -133,7 +133,7 @@ userRoutes
           .status(400)
           .json({ msg: "Erro ao adicionar o curso para o usuário." });
       } else {
-        res.status(200).json({ users });
+        res.status(200).json(users);
       }
     });
   })
