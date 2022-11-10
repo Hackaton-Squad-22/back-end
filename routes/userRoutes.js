@@ -127,7 +127,7 @@ userRoutes
 
   .post("/users/:id", (req, res) => {
     const id = req.params.id;
-    users.findByIdAndUpdate(id, req.body, (err, users) => {
+    users.findByIdAndUpdate(id,  req.body, (err, users) => {
       if (err) {
         res
           .status(400)
