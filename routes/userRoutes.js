@@ -115,7 +115,6 @@ userRoutes
       password: req.body.password,
       role: "user",
       date: new Date(),
-
     });
     user.save((err, users) => {
       if (err) {
@@ -128,13 +127,13 @@ userRoutes
 
   .post("/users/:id", (req, res) => {
     const id = req.params.id;
-    users.findByIdAndUpdate(id, { $set: req.body }, (err) => {
+    users.findByIdAndUpdate(id,  req.body, (err, users) => {
       if (err) {
         res
           .status(400)
           .json({ msg: "Erro ao adicionar o curso para o usuário." });
       } else {
-        res.status(200).json({ msg: "Curso adicionado." });
+        res.status(200).json(users);
       }
     });
   })
